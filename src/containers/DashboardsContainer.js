@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { DropDown } from '../components/DropDown'
-import { Table } from '../components/Table'
+import { DataTable } from '../components/DataTable'
 import { BarChart } from '../components/BarChart'
 import { fetchStates } from '../services/stateAPI'
+import { fetchDataTable } from '../services/agricultureAPI'
 import { dataFlattener } from "../utils/dataFormatter"
 
 export const DashboardsContainer = () => {
 
     const [states, setStates] = useState([])
+    const [tableData, setTableData] = useState([])
+    const [selectedState, setSelectedState] = useState("delhi")
+
 
     useEffect(() => {
         const executeFetchStates = async () => {
@@ -18,12 +22,20 @@ export const DashboardsContainer = () => {
         executeFetchStates()
     }, [])
 
+    useEffect(() => {
+        const executeFetchDataTable = async () => {
+            const result = await fetchDataTable(selectedState)
+            setTableData(result)
+        }
+        executeFetchDataTable()
+    }, [selectedState])
+
     return (
         <>
-            <DropDown data={states} />
+            <DropDown data={states} selectedState={selectedState} setSelectedState={setSelectedState} />
             {/* <BarChart />
-            <BarChart />
-            <Table /> */}
+            <BarChart /> */}
+            <DataTable rows={tableData} />
 
         </>
     )

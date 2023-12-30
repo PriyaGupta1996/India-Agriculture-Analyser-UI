@@ -6,9 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { v4 as uuidv4 } from 'uuid';
 
-export const DropDown = ({ data }) => {
-
-    const [selectedState, setSelectedState] = useState("delhi")
+export const DropDown = ({ data, selectedState, setSelectedState }) => {
 
     const handleStateChange = (event) => {
         setSelectedState(event.target.value)
