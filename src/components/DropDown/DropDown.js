@@ -6,11 +6,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { v4 as uuidv4 } from 'uuid';
 
-export const DropDown = ({ data, selectedState, setSelectedState }) => {
+export const DropDown = ({ data, filters, setFilters }) => {
     const handleStateChange = (event) => {
-        setSelectedState(event.target.value)
+        const currentFilter = {}
+        currentFilter.StateName = event.target.value
+        setFilters(currentFilter)
     }
-    console.log("DROP DOWN CALLED")
     return (
         <Box sx={{ minWidth: 120 }}>
             <FormControl >
@@ -18,7 +19,7 @@ export const DropDown = ({ data, selectedState, setSelectedState }) => {
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={selectedState}
+                    value={filters.StateName}
                     label="State"
                     onChange={handleStateChange}
                 >
@@ -28,7 +29,6 @@ export const DropDown = ({ data, selectedState, setSelectedState }) => {
             </FormControl>
         </Box>
 
-        // <p>Hello Priya</p>
 
     );
 }
