@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { DropDown } from '../components/DropDown'
-import { DataTable } from '../components/DataTable'
-import { BarChart } from '../components/BarChart'
+import { DropDown } from '../components/DropDown/DropDown'
+import { DataTable } from '../components/Table/DataTable'
+import { BarChart } from '../components/BarChart/BarChart'
 import { fetchStates } from '../services/stateAPI'
 import { fetchDataTable } from '../services/agricultureAPI'
 import { dataFlattener } from "../utils/dataFormatter"
@@ -23,8 +23,11 @@ export const DashboardsContainer = () => {
     }, [])
 
     useEffect(() => {
+        const queryParams = {
+            StateName: selectedState
+        }
         const executeFetchDataTable = async () => {
-            const result = await fetchDataTable(selectedState)
+            const result = await fetchDataTable(queryParams)
             setTableData(result)
         }
         executeFetchDataTable()
@@ -32,10 +35,13 @@ export const DashboardsContainer = () => {
 
     return (
         <>
-            <DropDown data={states} selectedState={selectedState} setSelectedState={setSelectedState} />
+            {
+                console.log("Hello Container")
+            }
+            < DropDown data={states} selectedState={selectedState} setSelectedState={setSelectedState} />
             {/* <BarChart />
             <BarChart /> */}
-            <DataTable rows={tableData} />
+            < DataTable rows={tableData} setRows={setTableData} stateName={selectedState} />
 
         </>
     )

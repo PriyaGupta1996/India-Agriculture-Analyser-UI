@@ -1,5 +1,4 @@
 export const titleCase = (data) => {
-    console.log("data", data)
     return data.trim()[0].toUpperCase() + data.trim().slice(1)
 }
 
@@ -10,4 +9,8 @@ export const dataFlattener = (data, key) => {
         result.push(titleCase(item[key]))
     }
     return result
+}
+
+export const roundDecimals = (data) => {
+    return data.toFixed(2)
 }
