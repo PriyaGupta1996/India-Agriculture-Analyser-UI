@@ -24,7 +24,7 @@ export const DropDown = ({ data, filters, setFilters }) => {
                     onChange={handleStateChange}
                 >
 
-                    {data.map(state => <MenuItem key={uuidv4()} value={state.toLowerCase()} >{state}</MenuItem>)}
+                    {data?.map(state => <MenuItem key={uuidv4()} value={state.toLowerCase()} >{state}</MenuItem>)}
                 </Select>
             </FormControl>
         </Box>

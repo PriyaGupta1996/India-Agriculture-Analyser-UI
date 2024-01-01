@@ -1,30 +1,44 @@
 import axios from 'axios'
 export const fetchProductionPerYear = async (stateName) => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/agriculture/${stateName}/production-per-year`)
+        const token = localStorage.getItem("bearerToken")
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/agriculture/${stateName}/production-per-year`,
+            {
+                headers: {
+                    'authorization': token,
+                    'Content-Type': 'application/json',
+                },
+            })
         if (response.data.statusCode === 200) {
             return response.data.data
         } else {
-            alert(response.data.message)
+            throw new Error(response.data.message)
         }
     } catch (err) {
         console.log("error", err)
-        alert("Something went wrong. Please try again")
+        throw new Error("Error", err)
     }
 
 }
 
 export const fetchProductionPerCrop = async (stateName) => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/agriculture/${stateName}/production-per-crop`)
+        const token = localStorage.getItem("bearerToken")
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/agriculture/${stateName}/production-per-crop`,
+            {
+                headers: {
+                    'authorization': token,
+                    'Content-Type': 'application/json',
+                },
+            })
         if (response.data.statusCode === 200) {
             return response.data.data
         } else {
-            alert(response.data.message)
+            throw new Error(response.data.message)
         }
     } catch (err) {
-        console.log("error", err)
-        alert("Something went wrong. Please try again")
+        console.log("Error", err)
+        throw err
     }
 
 }

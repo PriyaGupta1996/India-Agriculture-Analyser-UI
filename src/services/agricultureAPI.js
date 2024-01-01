@@ -1,8 +1,8 @@
 import axios from 'axios'
+
 export const fetchDataTable = async ({ StateName, secondaryFilters, sortColumn, sortOrder, pageSize }) => {
 
     try {
-        console.log("filter in datatable fetch", StateName, secondaryFilters);
         let API_QUERY = `${process.env.REACT_APP_API_URL}/agriculture/${StateName}?`
 
         if (secondaryFilters && Object.keys(secondaryFilters).length > 0) {
@@ -14,16 +14,23 @@ export const fetchDataTable = async ({ StateName, secondaryFilters, sortColumn, 
             API_QUERY = API_QUERY + `sortColumn=${sortColumn}&sortOrder=${sortOrder}`
         }
 
-        console.log("FInal query", API_QUERY)
-        const response = await axios.get(API_QUERY)
+        const token = localStorage.getItem("bearerToken")
+
+        const response = await axios.get(API_QUERY, {
+            headers: {
+                'authorization': token,
+                'Content-Type': 'application/json',
+            },
+        })
         if (response.data.statusCode === 200) {
             return response.data.data
         } else {
-            alert(response.data.message)
+            console.log(response.data.message)
+            throw new Error(response.data.message)
         }
     } catch (err) {
         console.log("error", err)
-        alert("Something went wrong. Please try again")
+        throw err
     }
 
 }
