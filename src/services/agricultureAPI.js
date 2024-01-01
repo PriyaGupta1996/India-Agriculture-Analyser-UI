@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const fetchDataTable = async ({ StateName, secondaryFilters, sortColumn, sortOrder, pageSize }) => {
+export const fetchDataTable = async ({ StateName, secondaryFilters, sortColumn, sortOrder, page, pageSize }) => {
 
     try {
         let API_QUERY = `${process.env.REACT_APP_API_URL}/agriculture/${StateName}?`
@@ -12,6 +12,12 @@ export const fetchDataTable = async ({ StateName, secondaryFilters, sortColumn, 
         }
         if (sortColumn && sortOrder) {
             API_QUERY = API_QUERY + `sortColumn=${sortColumn}&sortOrder=${sortOrder}`
+        }
+        if (page) {
+            API_QUERY = API_QUERY + `&page=${page}`
+        }
+        if (pageSize) {
+            API_QUERY = API_QUERY + `&pageSize=${pageSize}`
         }
 
         const token = localStorage.getItem("bearerToken")

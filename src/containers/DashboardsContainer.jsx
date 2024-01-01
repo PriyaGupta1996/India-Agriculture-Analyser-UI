@@ -13,7 +13,7 @@ import {
 
 export const DashboardsContainer = () => {
   const [states, setStates] = useState([]);
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState({});
   const [productionPerYear, setProductionPerYear] = useState({});
   const [productionPerCrop, setProductionPerCrop] = useState({});
   const [filters, setFilters] = useState({ StateName: "delhi" });
@@ -86,11 +86,12 @@ export const DashboardsContainer = () => {
               chartColor="#43a047"
             />
           )}
-          {tableData && tableData.length > 0 && (
+          {tableData && Object.keys(tableData).length > 0 && (
             <DataTable
-              rows={tableData}
+              rows={tableData.records}
               setFilters={setFilters}
               filters={filters}
+              rowCount={tableData.totalCount}
             />
           )}
         </>
