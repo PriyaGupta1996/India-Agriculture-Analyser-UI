@@ -10,7 +10,6 @@ import {
 } from "chart.js";
 import { Bar, getElementsAtEvent } from "react-chartjs-2";
 import { titleCase, lowerCase } from "../../utils/dataFormatter";
-import { fetchDataTable } from "../../services/agricultureAPI";
 
 export const BarChart = ({
   chartData,

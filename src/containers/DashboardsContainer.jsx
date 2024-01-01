@@ -5,11 +5,14 @@ import { BarChart } from "../components/BarChart/BarChart";
 import { fetchStates } from "../services/stateAPI";
 import { fetchDataTable } from "../services/agricultureAPI";
 import { dataFlattener } from "../utils/dataFormatter";
+import { Oval } from "react-loader-spinner";
 import { ErrorComponent } from "../components/ErrorComponent";
 import {
   fetchProductionPerCrop,
   fetchProductionPerYear,
 } from "../services/chartAPI";
+
+import "./style.css";
 
 export const DashboardsContainer = () => {
   const [states, setStates] = useState([]);
@@ -60,41 +63,65 @@ export const DashboardsContainer = () => {
       {error.length > 0 ? (
         <ErrorComponent type="error" message={error} />
       ) : (
-        <>
-          {states && states.length > 0 && (
-            <DropDown data={states} filters={filters} setFilters={setFilters} />
-          )}
-          {productionPerCrop && productionPerCrop.length > 0 && (
-            <BarChart
-              chartData={productionPerCrop}
-              filters={filters}
-              setFilters={setFilters}
-              xaxis={"Crop"}
-              yaxis={"TotalProduction"}
-              chartTitle={"Production per Crop"}
-              chartColor="#fdd835"
-            />
-          )}
-          {productionPerYear && productionPerYear.length > 0 && (
-            <BarChart
-              chartData={productionPerYear}
-              filters={filters}
-              setFilters={setFilters}
-              xaxis={"Year"}
-              yaxis={"TotalProduction"}
-              chartTitle={"Production per Year"}
-              chartColor="#43a047"
-            />
-          )}
-          {tableData && Object.keys(tableData).length > 0 && (
-            <DataTable
-              rows={tableData.records}
-              setFilters={setFilters}
-              filters={filters}
-              rowCount={tableData.totalCount}
-            />
-          )}
-        </>
+        <div className="dashboard-container">
+          <div className="dropdown">
+            {states && states.length > 0 && (
+              <DropDown
+                data={states}
+                filters={filters}
+                setFilters={setFilters}
+              />
+            )}
+          </div>
+          <div className="bar-chart-container">
+            <div className="bar-chart">
+              {productionPerCrop && productionPerCrop.length > 0 && (
+                <BarChart
+                  chartData={productionPerCrop}
+                  filters={filters}
+                  setFilters={setFilters}
+                  xaxis={"Crop"}
+                  yaxis={"TotalProduction"}
+                  chartTitle={"Production per Crop"}
+                  chartColor="#fdd835"
+                />
+              )}
+            </div>
+            <div className="bar-chart">
+              {productionPerYear && productionPerYear.length > 0 && (
+                <BarChart
+                  chartData={productionPerYear}
+                  filters={filters}
+                  setFilters={setFilters}
+                  xaxis={"Year"}
+                  yaxis={"TotalProduction"}
+                  chartTitle={"Production per Year"}
+                  chartColor="#43a047"
+                />
+              )}
+            </div>
+          </div>
+          <div className="data-table">
+            {tableData && Object.keys(tableData).length > 0 ? (
+              <DataTable
+                rows={tableData.records}
+                setFilters={setFilters}
+                filters={filters}
+                rowCount={tableData.totalCount}
+              />
+            ) : (
+              <Oval
+                visible={true}
+                height="80"
+                width="80"
+                color="#4fa94d"
+                ariaLabel="oval-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            )}
+          </div>
+        </div>
       )}
     </>
   );
