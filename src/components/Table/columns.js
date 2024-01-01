@@ -31,20 +31,20 @@ export const columns = [
             // Convert to titleCase
             if (params.value)
                 return roundDecimals(params.value);
-        }, headerName: 'Area', width: 130
+        }, headerName: 'Area (Hectare)', width: 150
     },
     {
         field: 'Production', headerClassName: 'super-app-theme--header', valueGetter: (params) => {
             // Convert to titleCase
             if (params.value)
                 return roundDecimals(params.value);
-        }, headerName: 'Production', width: 130
+        }, headerName: 'Production (Ton.)', width: 180
     },
     {
         field: 'Yield', headerClassName: 'super-app-theme--header', valueGetter: (params) => {
             // Convert to titleCase
             if (params.value)
                 return roundDecimals(params.value);
-        }, headerName: 'Yield', width: 130
+        }, headerName: 'Yield (Ton/Hec)', width: 130
     },
 ];

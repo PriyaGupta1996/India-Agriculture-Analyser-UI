@@ -14,9 +14,9 @@ export const fetchProductionPerYear = async (stateName) => {
         } else {
             throw new Error(response.data.message)
         }
-    } catch (err) {
-        console.log("error", err)
-        throw new Error("Error", err)
+    } catch (error) {
+        console.log("error", error)
+        throw new Error("Error", error)
     }
 
 }
@@ -36,9 +36,9 @@ export const fetchProductionPerCrop = async (stateName) => {
         } else {
             throw new Error(response.data.message)
         }
-    } catch (err) {
-        console.log("Error", err)
-        throw err
+    } catch (error) {
+        console.log("Error", error)
+        throw error
     }
 
 }

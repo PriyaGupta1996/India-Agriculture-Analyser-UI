@@ -16,9 +16,8 @@ export const generateToken = async () => {
 
             if (response.data.statusCode === 200) {
                 return response.data.data;
-            } else {
-                break; // request was successful.
             }
+            retries++;
         } catch (err) {
             console.log("error", err);
             if (retries < maxRetries) {

@@ -17,9 +17,9 @@ export const fetchStates = async () => {
         } else {
             throw new Error(response.data.message)
         }
-    } catch (err) {
-        console.log("error", err)
-        throw err
+    } catch (error) {
+        console.log("error", error)
+        throw error
     }
 
 }

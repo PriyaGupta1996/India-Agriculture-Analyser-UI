@@ -1,25 +1,21 @@
-.dashboard-container{
-    display: flex;
-    flex-direction: column;
-    width:100%;
-    align-items: center;
-    padding-top :1rem;
-    overflow-x: hidden;
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding-top: 1rem;
+  overflow-x: hidden;
 }
-.bar-chart{
-padding: 1rem;
-width:95%;
+.bar-chart {
+  padding: 1rem;
+  width: 95%;
 }
-.bar-chart-container{
-display: flex;
-justify-content: space-around;
-overflow-x: hidden;
-width:90%
+.bar-chart-container {
+  display: flex;
+  justify-content: space-around;
+  overflow-x: hidden;
+  width: 90%;
 }
-.dropdown{
-width:10%;
+.dropdown {
+  width: 10%;
 }
-.data-table{
-
-}
-

@@ -1,7 +1,6 @@
 "use client";
 
 import { ErrorBoundary } from "react-error-boundary";
-import { ErrorComponent } from "../src/components/ErrorComponent";
 const { Dashboard } = require("./pages/Dashboard");
 
 function App() {
