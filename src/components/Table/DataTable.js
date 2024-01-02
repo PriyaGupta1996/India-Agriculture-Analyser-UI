@@ -27,6 +27,7 @@ export const DataTable = ({ rows, setFilters, filters, rowCount }) => {
     return (
         <div>
             <DataGrid
+                autoHeight
                 rows={rows}
                 columns={columns}
                 sx={{
